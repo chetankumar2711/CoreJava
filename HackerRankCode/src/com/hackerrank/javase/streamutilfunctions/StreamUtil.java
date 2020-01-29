@@ -22,7 +22,7 @@ public class StreamUtil {
 		Comparator<Student> multiComparator = Comparator.comparingDouble(Student::getCgpa)
 				.thenComparing(Student::getLastName).thenComparingInt(Student::getId);
 		listOfStudents = listOfStudents.stream().sorted(multiComparator).collect(Collectors.toList());
-		listOfStudents.forEach(s->System.out.println(s.getLastName()));
+		listOfStudents.forEach(s->System.out.println("Student: "+s.getLastName()));
 		
 	}
 
