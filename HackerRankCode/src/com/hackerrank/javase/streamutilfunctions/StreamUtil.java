@@ -16,13 +16,16 @@ import com.hackerrank.javase.entity.Student;
 public class StreamUtil {
 
 	/**
+	 * Compare by cgpa in descending order i.e., top to bottom
+	 * if cgpa ties, break by names in ascending order
+	 * ig both cgpa and names tie, break by id in ascending order
 	 * @param listOfStudents
+	 * @return 
 	 */
-	public static void useMultiSort(List<Student> listOfStudents) {
-		Comparator<Student> multiComparator = Comparator.comparingDouble(Student::getCgpa)
+	public static List<Student> useMultiSort(List<Student> listOfStudents) {
+		Comparator<Student> multiComparator = Comparator.comparingDouble(Student::getCgpa).reversed()
 				.thenComparing(Student::getLastName).thenComparingInt(Student::getId);
-		listOfStudents = listOfStudents.stream().sorted(multiComparator).collect(Collectors.toList());
-		listOfStudents.forEach(s->System.out.println("Student: "+s.getLastName()));
+		return listOfStudents.stream().sorted(multiComparator).collect(Collectors.toList());
 		
 	}
 
